@@ -1,0 +1,91 @@
+.profile-container {
+  padding: 2rem;
+  background-color: #fdf6e3;
+  color: #3e2f1c;
+  font-family: 'Georgia', serif;
+}
+
+.profile-container h2 {
+  margin-bottom: 1.5rem;
+  color: #8b2e2e;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.book-card {
+  background: #f1e3c1;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #8b2e2e;
+}
+
+.book-card p {
+  margin: 0.3rem 0;
+}
+
+.book-card input,
+.book-card textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.card-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.card-buttons button {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.card-buttons .delete {
+  background-color: #8b2c2c;
+  color: white;
+}
+
+.card-buttons .delete:hover {
+  background-color: #6a1f1f;
+}
+
+.card-buttons .edit {
+  background-color: #e7e7e7;
+  color: #333;
+}
+
+.card-buttons .edit:hover {
+  background-color: #d5d5d5;
+}
+
+.form-error {
+  color: #a33;
+  margin-bottom: 1rem;
+  background: #fceaea;
+  padding: 0.75rem;
+  border: 1px solid #e4bcbc;
+  border-radius: 8px;
+}

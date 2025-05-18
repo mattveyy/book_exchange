@@ -1,0 +1,70 @@
+.exchange-container {
+  padding: 2rem;
+  background-color: #fdf6e3;
+  font-family: Georgia, serif;
+  color: #3e2f1c;
+}
+
+.exchange-container h2 {
+  color: #8b2e2e;
+  margin-bottom: 1.5rem;
+}
+
+.exchange-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.exchange-item {
+  background: #f3e4c7;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  line-height: 1.6;
+}
+
+.form-error {
+  background-color: #fde4e4;
+  border: 1px solid #cc4444;
+  color: #8b2c2c;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.action-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.accept-btn,
+.decline-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+.accept-btn {
+  background-color: #2e8b57;
+  color: white;
+}
+
+.accept-btn:hover {
+  background-color: #257147;
+}
+
+.decline-btn {
+  background-color: #b63e3e;
+  color: white;
+}
+
+.decline-btn:hover {
+  background-color: #952c2c;
+}
