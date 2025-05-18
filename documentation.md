@@ -39,11 +39,17 @@ BookExchange — это платформа, где пользователи мо
 ```bash
 docker-compose up --build
 ```
+
+### 3. Отдельно необходимо запустить Flask
+
+```bash
+flask run
+```
 - Backend будет доступен на [http://localhost:5001](http://localhost:5001)
 - Swagger UI: [http://localhost:5001/swagger](http://localhost:5001/swagger)
 - База данных PostgreSQL: порт 5432
 
-### 3. Запуск фронтенда (React)
+### 4. Запуск фронтенда (React)
 
 Перейдите в папку `book-exchange-frontend` и выполните:
 ```bash
@@ -52,7 +58,7 @@ npm run dev
 ```
 - Фронтенд будет доступен на [http://localhost:5173](http://localhost:5173) (или другой порт, указанный в консоли)
 
-### 4. Инициализация базы данных и создание администратора
+### 5. Инициализация базы данных и создание администратора
 
 ```bash
 python create_db.py
