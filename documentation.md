@@ -34,10 +34,6 @@ BookExchange — это платформа, где пользователи мо
 
 ### 1. Клонируйте репозиторий
 
-```bash
-git clone <repo-SSH> <path-to-folder>
-```
-
 ### 2. Запуск через Docker Compose
 
 ```bash
