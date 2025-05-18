@@ -1,0 +1,287 @@
+openapi: 3.0.0
+info:
+  title: Book Exchange API
+  version: 1.0.0
+  description: REST API для обмена книгами между пользователями
+servers:
+  - url: http://localhost:5001
+
+paths:
+  /users/register:
+    post:
+      summary: Регистрация нового пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+      responses:
+        "201":
+          description: Регистрация успешна
+        "400":
+          description: Ошибка регистрации
+
+  /users/login:
+    post:
+      summary: Авторизация пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUser'
+      responses:
+        "200":
+          description: Успешный вход
+        "401":
+          description: Неверные данные
+
+  /users:
+    get:
+      summary: Получить всех пользователей
+      responses:
+        "200":
+          description: Список пользователей
+
+  /users/{user_id}:
+    get:
+      summary: Получить пользователя по ID
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Данные пользователя
+        "404":
+          description: Пользователь не найден
+    put:
+      summary: Обновить пользователя
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUser'
+      responses:
+        "200":
+          description: Данные обновлены
+    delete:
+      summary: Удалить пользователя
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Пользователь удалён
+
+  /books:
+    get:
+      summary: Получить список книг с фильтрами
+      parameters:
+        - in: query
+          name: title
+          schema:
+            type: string
+        - in: query
+          name: author
+          schema:
+            type: string
+        - in: query
+          name: genre
+          schema:
+            type: string
+        - in: query
+          name: location
+          schema:
+            type: string
+        - in: query
+          name: status
+          schema:
+            type: string
+        - in: query
+          name: sort
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешно
+
+    post:
+      summary: Добавить книгу
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        "201":
+          description: Книга добавлена
+
+  /books/{book_id}:
+    get:
+      summary: Получить книгу по ID
+      parameters:
+        - in: path
+          name: book_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Книга найдена
+        "404":
+          description: Книга не найдена
+    put:
+      summary: Обновить книгу
+      parameters:
+        - in: path
+          name: book_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        "200":
+          description: Книга обновлена
+    delete:
+      summary: Удалить книгу
+      parameters:
+        - in: path
+          name: book_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Книга удалена
+
+  /exchange:
+    get:
+      summary: Получить список обменов
+      responses:
+        "200":
+          description: Список обменов
+    post:
+      summary: Предложить обмен
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Exchange'
+      responses:
+        "201":
+          description: Обмен создан
+
+  /exchange/{exchange_id}:
+    get:
+      summary: Получить обмен по ID
+      parameters:
+        - in: path
+          name: exchange_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Обмен найден
+    patch:
+      summary: Обновить статус обмена
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status:
+                  type: string
+                  enum: [accepted, declined]
+      responses:
+        "200":
+          description: Статус обновлён
+
+components:
+  schemas:
+    RegisterUser:
+      type: object
+      required: [username, email, password]
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+
+    LoginUser:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    UpdateUser:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    Book:
+      type: object
+      required: [title, author, user_id]
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        genre:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+        user_id:
+          type: integer
+
+    Exchange:
+      type: object
+      required: [sender_id, receiver_id, offered_book_id, requested_book_id]
+      properties:
+        sender_id:
+          type: integer
+        receiver_id:
+          type: integer
+        offered_book_id:
+          type: integer
+        requested_book_id:
+          type: integer

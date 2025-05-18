@@ -1,0 +1,5 @@
+.DS_Store
+.idea/
+venv/
+book-exchange-frontend/node_modules/
+book-exchange-frontend/package-lock.json
