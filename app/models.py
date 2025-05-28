@@ -3,6 +3,7 @@
 """
 from datetime import datetime
 from app.extensions import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
@@ -28,6 +29,14 @@ class User(db.Model):
         foreign_keys='Exchange.receiver_id',
         backref='receiver_user'
     )
+
+    def set_password(self, password):
+        """Установка хэша пароля."""
+        self.password_hash = generate_password_hash(password, method='pbkdf2:sha256')
+
+    def check_password(self, password):
+        """Проверка пароля."""
+        return check_password_hash(self.password_hash, password)
 
 
 class Book(db.Model):
